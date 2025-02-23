@@ -22,14 +22,13 @@ const router = createRouter({
 })
 
 // Navigation guard to check for authentication
-router.beforeEach((to, _, next) => {  
-
+router.beforeEach((to, _, next) => { 
   if (to.meta.requiresAuth && !isAuthenticated.value) {
-    next({ name: 'login', query: { redirect: to.fullPath } });
+    next({ name: 'LoginPage', query: { redirect: to.fullPath } })
   } else {
     next()
   }
 
 })
 
-export default router;
+export default router
