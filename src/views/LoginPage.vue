@@ -1,15 +1,15 @@
 <template>  
-  <form class="" @submit.prevent>  
+  <form class="m-10" @submit.prevent>  
     <div>  
-      <label for="username" class="">Username</label>  
+      <label for="username" class="block mb-2 font-bold">Username</label>  
       <input id="username" v-model="username" type="text" placeholder="Username">  
     </div>  
     <div>  
-      <label for="password" class="">Password</label>  
+      <label for="password" class="block mb-2 font-bold">Password</label>  
       <input id="password" v-model="password" type="password" placeholder="Password">  
     </div>  
 
-    <button @click="logUserIn" class="">LOGIN</button>  
+    <button @click="logUserIn" class="bg-green-500 mt-4 px-4 py-2 hover:bg-green-700 hover:text-white">LOGIN</button>  
   
   </form>  
 </template>  
@@ -20,7 +20,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { useAuth } from '../composables/useAuth'
 
-
+const { login, logout } = useAuth()
 
 const router = useRouter()  
 const route = useRoute()  
@@ -31,9 +31,9 @@ const password = ref('')
 const logUserIn = async () => {  
   if (await login(username.value, password.value)) {  
     if (route.query.redirect) {  
-      router.push(route.query.redirect)  
+        router.push(route.query.redirect)  
     } else {  
-      router.push({ name: 'SettingsPage' })  
+        router.push({ name: 'SettingsPage' })  
     }  
   } else {  
     logout()  
